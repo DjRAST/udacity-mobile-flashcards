@@ -20,12 +20,13 @@ class CreateDeckView extends Component {
   onSubmit = () => {
     const { dispatch, navigation } = this.props
     const { deckNameInput } = this.state
-    if (deckNameInput.length >= 3) {
+
+    if (deckNameInput.length < 3) {
+      alert('Please enter at least three characters')
+    } else {
       dispatch(addNewDeck(deckNameInput))
       navigation.navigate(DECKS_LIST_VIEW_ID)
       this.setState({deckNameInput: ''})
-    } else {
-      alert('Please enter at least three characters')
     }
   }
 

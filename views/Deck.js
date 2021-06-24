@@ -4,12 +4,14 @@ import  { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ViewStyles from '../styles/view';
 import Button from '../components/Button';
+import { CREATE_QUESTION_VIEW_ID } from './CreateQuestion';
 
 export const DECK_VIEW_ID = 'Deck';
 
 class DeckView extends Component {
   onCreateCard = () => {
-    alert('Add Card')
+    const { deckId, navigation } = this.props
+    navigation.navigate(CREATE_QUESTION_VIEW_ID, { deckId })
   }
 
   onStartQuiz = () => {
@@ -22,7 +24,7 @@ class DeckView extends Component {
     return (
       <View style={ViewStyles.base}>
         <Text style={ViewStyles.viewHeadline}>{deckId} <MaterialCommunityIcons name='cards-outline' size={32} color='black' /></Text>
-        <Text style={{marginBottom: 36, fontSize: 18}}>{noCards} Questions</Text>
+        <Text style={{marginBottom: 36, fontSize: 18}}>{noCards} Cards</Text>
         <Button text='Add Card' color='green' onPress={this.onCreateCard} style={{marginBottom: 24}} />
         <Button text='Start Quiz' color='coral' onPress={this.onStartQuiz} />
       </View>

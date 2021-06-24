@@ -1,4 +1,4 @@
-import { SET_INITAL_DATA, ADD_NEW_DECK } from './actions';
+import { SET_INITAL_DATA, ADD_NEW_DECK, ADD_NEW_CARD_TO_DECK } from './actions';
 
 export default function reducer (state = {}, action) {
   switch (action.type) {
@@ -11,6 +11,19 @@ export default function reducer (state = {}, action) {
           title: action.deckName,
           questions: [],
         }
+      }
+    case ADD_NEW_CARD_TO_DECK:
+      const {deckId, question, answer} = action
+      const updatedDeck = {
+        ...state[deckId],
+        questions: [
+          ...state[deckId].questions,
+          {question: question, answer: answer},
+        ]
+      }
+      return {
+        ...state,
+        [deckId]: updatedDeck,
       }
     default:
       return state;
