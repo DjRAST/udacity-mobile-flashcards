@@ -22,8 +22,8 @@ export default function () {
         },
       })}
     >
-      <Tab.Screen name={DECKS_LIST_VIEW_ID} component={DecksListView} />
-      <Tab.Screen name={CREATE_DECK_VIEW_ID} component={CreateDeckView} />
+      <Tab.Screen name={DECKS_LIST_VIEW_ID} component={DecksListView} options={{title: 'All Decks'}} />
+      <Tab.Screen name={CREATE_DECK_VIEW_ID} component={CreateDeckView} options={{title: 'Create Deck'}} />
     </Tab.Navigator>
   )
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import ViewStyles from '../styles/view';
 import { connect } from 'react-redux';
 import { addNewDeck } from '../storage/actions';
 import { DECKS_LIST_VIEW_ID } from './DecksList';
+import Button from '../components/Button';
 
 export const CREATE_DECK_VIEW_ID = 'CreateDeck';
 
@@ -39,7 +40,7 @@ class CreateDeckView extends Component {
           value={deckNameInput}
           style={ViewStyles.textInput}
           onChangeText={this.onTextChanged} />
-        <Button title='Create' onPress={this.onSubmit} />
+        <Button text='Create' color='cornflowerblue' onPress={this.onSubmit} />
       </View>
     )
   }

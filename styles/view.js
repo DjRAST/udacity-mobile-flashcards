@@ -18,5 +18,16 @@ export default StyleSheet.create({
     marginBottom: 12,
     borderWidth: 2,
     borderColor: 'lightgrey',
+  },
+  button: {
+    width: 250,
+    paddingTop: 16,
+    paddingBottom: 16,
+    borderRadius: 24,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
   }
 })
