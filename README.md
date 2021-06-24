@@ -8,7 +8,7 @@ The app was realized, using:
 
 * TBD
 
-_The App was designed for IOS and tested on an IPhone Xs_
+_The App was designed primarily for iOS and tested on an iPhone Xs_
 
 ## start the project
 
@@ -16,3 +16,4 @@ To get started:
 
 * install all project dependencies with `npm install`
 * start the development server with `expo start`
+* scan the QR code with your mobile phone, with the [Expo Go App](https://apps.apple.com/de/app/expo-client/id982107779) installed 
