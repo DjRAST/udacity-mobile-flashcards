@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,13 +7,18 @@ import { FontAwesome, AntDesign } from '@expo/vector-icons';
 
 import DecksListView, { DECKS_LIST_VIEW_ID } from './views/DecksList';
 import CreateDeckView, { CREATE_DECK_VIEW_ID } from './views/CreateDeck';
-import reducer from './store/reducers'
-import middleware from './store/middleware';
+import reducer from './storage/reducers'
+import middleware from './storage/middleware';
+import { initAppData } from './storage/common';
 
 const store = createStore(reducer, middleware);
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+export default function App () {
+  useEffect(() => {
+    store.dispatch(initAppData())
+  }, [])
+
   return (
     <Provider store={store}>
       <NavigationContainer>
