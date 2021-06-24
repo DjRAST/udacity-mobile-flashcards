@@ -6,7 +6,8 @@ Explain App (TBD).
 
 The app was realized, using:
 
-* TBD
+* [Async Storage](@react-native-async-storage/async-storage)
+* [React Navigation](https://reactnavigation.org/)
 
 _The App was designed primarily for iOS and tested on an iPhone Xs_
 

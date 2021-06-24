@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import ViewStyles from '../styles/view';
+import { connect } from 'react-redux';
+import { increment } from '../store/common';
+
+export const CREATE_DECK_VIEW_ID = 'CreateDeck';
 
 class CreateDeckView extends Component {
   render () {
+    const { dispatch } = this.props
+
     return (
-      <View style={{flex: 1}}>
-        <Text>CREATE DECK</Text>
+      <View style={ViewStyles.base}>
+        <TouchableOpacity onPress={() => dispatch(increment())}>
+          <Text>CREATE DECK</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
 
-export default CreateDeckView
+export default connect()(CreateDeckView)
