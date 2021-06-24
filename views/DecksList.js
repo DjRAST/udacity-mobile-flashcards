@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Dimensions } from 'react-native';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import ViewStyles from '../styles/view';
+import { useNavigation } from '@react-navigation/native';
+import { DECK_VIEW_ID } from './Deck';
 
 export const DECKS_LIST_VIEW_ID = 'DecksList';
 
@@ -10,6 +12,7 @@ const localStyles = StyleSheet.create({
   deckListEntry: {
     width: Dimensions.get('window').width,
     padding: 40,
+    marginTop: 5,
     marginBottom: 5,
     backgroundColor: 'lavender',
     borderColor: 'white',
@@ -21,16 +24,21 @@ const localStyles = StyleSheet.create({
 })
 
 class DecksListView extends Component {
+  onOpenDeck = (deckTitle) => {
+    const { navigation } = this.props
+    navigation.navigate(DECK_VIEW_ID, { deckId: deckTitle })
+  }
+
   render () {
     const { decksModel } = this.props
 
     return (
       <View style={ViewStyles.base}>
-        <Text style={ViewStyles.viewHeadline}>All Decks</Text>
         <FlatList
           data={decksModel}
+          keyExtractor={(item) => item.title}
           renderItem={({item}) => (
-            <TouchableOpacity style={localStyles.deckListEntry}>
+            <TouchableOpacity style={localStyles.deckListEntry} onPress={() => this.onOpenDeck(item.title)} key={item.title}>
               <Text style={{fontSize: 20}}>{item.title}</Text>
               <Text style={{alignSelf: 'flex-end'}}>{item.questions} Questions</Text>
             </TouchableOpacity>
