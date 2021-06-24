@@ -7,8 +7,7 @@ const synchronizeStorage = (store) => (next) => (action) => {
   // TODO: limit to certain actions?
   const returnValue = next(action)
   // synchronize phone storage after every redux action
-  AsyncStorage.setItem(STORAGE_ID, JSON.stringify(store.getState()))
-  return returnValue
+  AsyncStorage.setItem(STORAGE_ID, JSON.stringify(store.getState())).then(() => returnValue)
 }
 
 export default applyMiddleware(

@@ -7,7 +7,10 @@ export default function reducer (state = {}, action) {
     case ADD_NEW_DECK:
       return {
         ...state,
-        [action.deckName]: {}
+        [action.deckName]: {
+          title: action.deckName,
+          questions: [],
+        }
       }
     default:
       return state;
