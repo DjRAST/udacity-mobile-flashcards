@@ -6,8 +6,10 @@ Explain App (TBD).
 
 The app was realized, using:
 
+* [React Native](https://reactnative.dev/)
 * [Async Storage](@react-native-async-storage/async-storage)
 * [React Navigation](https://reactnavigation.org/)
+* [react-native-card-flip](https://github.com/lhandel/react-native-card-flip)
 
 _The App was designed primarily for iOS and tested on an iPhone Xs_
 

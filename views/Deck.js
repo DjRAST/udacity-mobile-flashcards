@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import  { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ViewStyles from '../styles/view';
 import Button from '../components/Button';
 import { CREATE_QUESTION_VIEW_ID } from './CreateQuestion';
+import { QUIZ_VIEW_ID } from './Quiz';
 
 export const DECK_VIEW_ID = 'Deck';
 
@@ -15,7 +16,8 @@ class DeckView extends Component {
   }
 
   onStartQuiz = () => {
-    alert('Start Quiz')
+    const { deckId, navigation } = this.props
+    navigation.navigate(QUIZ_VIEW_ID, { deckId })
   }
 
   render () {
