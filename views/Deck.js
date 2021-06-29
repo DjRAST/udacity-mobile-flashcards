@@ -16,8 +16,12 @@ class DeckView extends Component {
   }
 
   onStartQuiz = () => {
-    const { deckId, navigation } = this.props
-    navigation.navigate(QUIZ_VIEW_ID, { deckId })
+    const { deckId, noCards, navigation } = this.props
+    if (noCards > 0) {
+      navigation.navigate(QUIZ_VIEW_ID, { deckId })
+    } else {
+      alert('Please add at least one card to start the quiz!')
+    }
   }
 
   render () {
@@ -40,7 +44,7 @@ function mapStateToProps (state, { route }) {
 
   return {
     deckId,
-    noCards: deck.questions.length
+    noCards: deck.questions.length,
   }
 }
 
