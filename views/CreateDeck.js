@@ -3,6 +3,7 @@ import { View, Text, TextInput } from 'react-native';
 import ViewStyles from '../styles/view';
 import { connect } from 'react-redux';
 import { addNewDeck } from '../storage/actions';
+import { DECK_VIEW_ID } from './Deck';
 import { DECKS_LIST_VIEW_ID } from './DecksList';
 import Button from '../components/Button';
 
@@ -26,6 +27,7 @@ class CreateDeckView extends Component {
     } else {
       dispatch(addNewDeck(deckNameInput))
       navigation.navigate(DECKS_LIST_VIEW_ID)
+      navigation.navigate(DECK_VIEW_ID, { deckId: deckNameInput })
       this.setState({deckNameInput: ''})
     }
   }
