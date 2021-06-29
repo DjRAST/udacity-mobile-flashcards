@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import QuestionCard from '../components/QuestionCard';
 import Button from '../components/Button'
-
 import ViewStyles from '../styles/view';
 
 export const QUIZ_VIEW_ID = 'Quiz';
+
+const styles = StyleSheet.create({
+  quizParagraph: {
+    marginTop: 12,
+    marginBottom: 12,
+    fontSize: 24
+  },
+})
 
 class QuizView extends Component {
   state = {
@@ -27,14 +34,28 @@ class QuizView extends Component {
     })
   }
 
+  onTryAgain = () => {
+    this.setState({
+      cardIndex: 0,
+      correctAnswers: 0,
+    })
+  }
+
+  onExitQuiz = () => {
+    const { navigation } = this.props
+    navigation.goBack()
+  }
+
   render () {
     const { questions } = this.props
     const { cardIndex, correctAnswers } = this.state
 
     if (cardIndex >= questions.length) {
       return (
-        <View>
-          <Text>You got {correctAnswers}/{questions.length} questions correct!</Text>
+        <View style={ViewStyles.base}>
+          <Text style={styles.quizParagraph}>You got {correctAnswers}/{questions.length} questions correct!</Text>
+          <Button style={{marginTop: 24}} text='Try Again' color='coral' onPress={this.onTryAgain} />
+          <Button style={{marginTop: 24}} text='Exit Quiz' color='crimson' onPress={this.onExitQuiz} />
         </View>
       )
     } else {
@@ -42,7 +63,7 @@ class QuizView extends Component {
 
       return (
         <View style={ViewStyles.base}>
-          <Text style={{marginTop: 12, marginBottom: 12, fontSize: 24}}>{cardIndex + 1}/{questions.length}</Text>
+          <Text style={styles.quizParagraph}>{cardIndex + 1}/{questions.length}</Text>
           <QuestionCard
             questionText={currentQuestion.question}
             answerText={currentQuestion.answer}
@@ -59,8 +80,6 @@ class QuizView extends Component {
 function mapStateToProps (state, { route }) {
   const { deckId } = route.params
   const questions = state[deckId].questions
-
-  console.log('deck', state[deckId])
 
   return {
     deckId,
