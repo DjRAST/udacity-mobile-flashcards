@@ -54,11 +54,11 @@ class QuestionCard extends Component {
     console.log(answerText)
 
     return (
-      <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} >
-        <TouchableOpacity style={[styles.card, styles.card1]} onPress={() => this.card.flip()} >
+      <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} key={questionText}>
+        <TouchableOpacity style={[styles.card, styles.card1]} onPress={() => this.card.flip()}>
           <Text style={styles.cardText}>{questionText}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.card, styles.card2]} onPress={() => this.card.flip()} >
+        <TouchableOpacity style={[styles.card, styles.card2]} onPress={() => this.card.flip()}>
           <Text style={styles.cardText}>{answerText}</Text>
         </TouchableOpacity>
       </CardFlip>
