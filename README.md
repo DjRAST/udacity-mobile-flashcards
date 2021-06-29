@@ -15,13 +15,18 @@ After creating cards for a deck, the user can test himself by starting a quiz. F
 Every day the user receives a notification if he didn't study on that day.
 
 ## technology
+Prerequisites:
+
+* Node.js 14.17.1
+* expo-cli (`npm install -g expo-cli`)
+
 This app was realized, using:
 
 * [React Native](https://reactnative.dev/)
 * [Create React Native App](create-react-native-app)
 * [Async Storage](@react-native-async-storage/async-storage)
 * [React Navigation](https://reactnavigation.org/)
-* [react-native-card-flip](https://github.com/lhandel/react-native-card-flip)
+* [React Native Card Flip](https://github.com/lhandel/react-native-card-flip)
 
 ## start the project
 

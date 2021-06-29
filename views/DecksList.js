@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Dimensions } from 'react-native';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import ViewStyles from '../styles/view';
-import { useNavigation } from '@react-navigation/native';
 import { DECK_VIEW_ID } from './Deck';
 
 export const DECKS_LIST_VIEW_ID = 'DecksList';

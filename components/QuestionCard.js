@@ -50,9 +50,6 @@ class QuestionCard extends Component {
   render () {
     const {questionText, answerText} = this.props
 
-    console.log(questionText)
-    console.log(answerText)
-
     return (
       <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} key={questionText}>
         <TouchableOpacity style={[styles.card, styles.card1]} onPress={() => this.card.flip()}>
