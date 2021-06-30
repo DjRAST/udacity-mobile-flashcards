@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import QuestionCard from '../components/QuestionCard';
 import Button from '../components/Button';
 import ViewStyles from '../styles/view';
+import { resetLocalNotification } from '../storage/notifications';
 
 export const QUIZ_VIEW_ID = 'Quiz';
 
@@ -21,17 +22,26 @@ class QuizView extends Component {
     correctAnswers: 0,
   };
 
-  onCorrectAnswer = () => {
+  moveToNextQuestion = () => {
+    const {questions} = this.props;
+    const {cardIndex} = this.state;
+    if (cardIndex + 1 >= questions.length) {
+      resetLocalNotification();
+    }
     this.setState({
-      cardIndex: this.state.cardIndex + 1,
-      correctAnswers: this.state.correctAnswers + 1,
+      cardIndex: cardIndex + 1,
     });
   };
 
-  onFailedAnswer = () => {
+  onCorrectAnswer = () => {
     this.setState({
-      cardIndex: this.state.cardIndex + 1,
+      correctAnswers: this.state.correctAnswers + 1,
     });
+    this.moveToNextQuestion();
+  };
+
+  onFailedAnswer = () => {
+    this.moveToNextQuestion();
   };
 
   onTryAgain = () => {

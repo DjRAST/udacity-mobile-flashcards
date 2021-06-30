@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { resetLocalNotification } from '../storage/notifications';
 import { CREATE_QUESTION_VIEW_ID } from './CreateQuestion';
 import { QUIZ_VIEW_ID } from './Quiz';
 import ViewStyles from '../styles/view';
@@ -19,7 +18,6 @@ class DeckView extends Component {
   onStartQuiz = () => {
     const {deckId, noCards, navigation} = this.props;
     if (noCards > 0) {
-      resetLocalNotification();
       navigation.navigate(QUIZ_VIEW_ID, {deckId});
     } else {
       alert('Please add at least one card to start the quiz!');
