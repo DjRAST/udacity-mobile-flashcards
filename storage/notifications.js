@@ -67,7 +67,7 @@ async function grantNotificationPermission () {
   }
 
   if (finalStatus !== 'granted') {
-    alert('Failed to get push token for push notification!');
+    alert('Notifications are disabled for this app. Please enable notifications in the phone settings to get daily reminders!');
     return false;
   }
 
