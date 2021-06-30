@@ -13,7 +13,7 @@ const localStyles = StyleSheet.create({
     padding: 40,
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: 'lavender',
+    backgroundColor: 'oldlace',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 25,
@@ -33,16 +33,19 @@ class DecksListView extends Component {
 
     return (
       <View style={ViewStyles.base}>
-        <FlatList
-          data={decksModel}
-          keyExtractor={(item) => item.title}
-          renderItem={({item}) => (
-            <TouchableOpacity style={localStyles.deckListEntry} onPress={() => this.onOpenDeck(item.title)} key={item.title}>
-              <Text style={{fontSize: 20}}>{item.title}</Text>
-              <Text style={{alignSelf: 'flex-end'}}>{item.questions} Questions</Text>
-            </TouchableOpacity>
-          )}
-        />
+        { decksModel.length === 0
+          ? (<Text style={{marginTop: 12}}>No card decks available. Please create one first.</Text>)
+          : (<FlatList
+              data={decksModel}
+              keyExtractor={(item) => item.title}
+              renderItem={({item}) => (
+                <TouchableOpacity style={localStyles.deckListEntry} onPress={() => this.onOpenDeck(item.title)} key={item.title}>
+                  <Text style={{fontSize: 20}}>{item.title}</Text>
+                  <Text style={{alignSelf: 'flex-end'}}>{item.questions} Question(s)</Text>
+                </TouchableOpacity>
+              )}
+            />)
+        }
       </View>
     )
   }
