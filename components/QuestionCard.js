@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import CardFlip from 'react-native-card-flip';
 
 const styles = StyleSheet.create({
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
 class QuestionCard extends Component {
   state = {
     isFlipped: false,
-  }
+  };
 
-  render () {
-    const {questionText, answerText} = this.props
+  render() {
+    const {questionText, answerText} = this.props;
 
     return (
       <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} key={questionText}>
@@ -60,8 +60,8 @@ class QuestionCard extends Component {
           <Text style={styles.cardText}>{answerText}</Text>
         </TouchableOpacity>
       </CardFlip>
-    )
+    );
   }
 }
 
-export default QuestionCard
+export default QuestionCard;

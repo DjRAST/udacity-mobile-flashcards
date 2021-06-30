@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions } from 'react-native';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ViewStyles from '../styles/view';
 import { DECK_VIEW_ID } from './Deck';
 
@@ -19,51 +18,52 @@ const localStyles = StyleSheet.create({
     borderRadius: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
-})
+  },
+});
 
 class DecksListView extends Component {
   onOpenDeck = (deckTitle) => {
-    const { navigation } = this.props
-    navigation.navigate(DECK_VIEW_ID, { deckId: deckTitle })
-  }
+    const {navigation} = this.props;
+    navigation.navigate(DECK_VIEW_ID, {deckId: deckTitle});
+  };
 
-  render () {
-    const { decksModel } = this.props
+  render() {
+    const {decksModel} = this.props;
 
     return (
       <View style={ViewStyles.base}>
-        { decksModel.length === 0
+        {decksModel.length === 0
           ? (<Text style={{marginTop: 12}}>No card decks available. Please create one first.</Text>)
           : (<FlatList
-              data={decksModel}
-              keyExtractor={(item) => item.title}
-              renderItem={({item}) => (
-                <TouchableOpacity style={localStyles.deckListEntry} onPress={() => this.onOpenDeck(item.title)} key={item.title}>
-                  <Text style={{fontSize: 20}}>{item.title}</Text>
-                  <Text style={{alignSelf: 'flex-end'}}>{item.questions} Question(s)</Text>
-                </TouchableOpacity>
-              )}
-            />)
+            data={decksModel}
+            keyExtractor={(item) => item.title}
+            renderItem={({item}) => (
+              <TouchableOpacity style={localStyles.deckListEntry} onPress={() => this.onOpenDeck(item.title)}
+                                key={item.title}>
+                <Text style={{fontSize: 20}}>{item.title}</Text>
+                <Text style={{alignSelf: 'flex-end'}}>{item.questions} Question(s)</Text>
+              </TouchableOpacity>
+            )}
+          />)
         }
       </View>
-    )
+    );
   }
 }
 
-function mapStateToProps (storeData) {
-  const decksModel = []
+function mapStateToProps(storeData) {
+  const decksModel = [];
 
   for (const [key, value] of Object.entries(storeData)) {
     decksModel.push({
       title: key,
       questions: value.questions.length,
-    })
+    });
   }
 
   return {
-    decksModel
-  }
+    decksModel,
+  };
 }
 
-export default connect(mapStateToProps)(DecksListView)
+export default connect(mapStateToProps)(DecksListView);

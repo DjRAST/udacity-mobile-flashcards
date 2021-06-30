@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import ViewStyles from '../styles/view';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
@@ -11,42 +11,42 @@ class CreateQuestionView extends Component {
   state = {
     questionText: '',
     answerText: '',
-  }
+  };
 
   onQuestionChanged = (text) => {
     this.setState({
-      questionText: text
-    })
-  }
+      questionText: text,
+    });
+  };
 
   onAnswerChanged = (text) => {
     this.setState({
-      answerText: text
-    })
-  }
+      answerText: text,
+    });
+  };
 
   onSubmit = () => {
-    const { dispatch, navigation, deckId } = this.props
-    const { questionText, answerText } = this.state
+    const {dispatch, navigation, deckId} = this.props;
+    const {questionText, answerText} = this.state;
 
     if (!questionText.length || !answerText.length) {
-      alert('Please enter a question and an answer!')
+      alert('Please enter a question and an answer!');
     } else {
       dispatch(addNewCardToDeck(deckId, {
         question: questionText,
         answer: answerText,
-      }))
-      navigation.goBack()
+      }));
+      navigation.goBack();
       this.setState({
         questionText: '',
         answerText: '',
-      })
+      });
     }
-  }
+  };
 
-  render () {
-    const { deckId } = this.props
-    const { questionText, answerText } = this.state
+  render() {
+    const {deckId} = this.props;
+    const {questionText, answerText} = this.state;
 
     return (
       <View style={ViewStyles.base}>
@@ -55,24 +55,24 @@ class CreateQuestionView extends Component {
         <TextInput
           value={questionText}
           style={ViewStyles.textInput}
-          onChangeText={this.onQuestionChanged} />
+          onChangeText={this.onQuestionChanged}/>
         <Text>Answer:</Text>
         <TextInput
           value={answerText}
           style={ViewStyles.textInput}
-          onChangeText={this.onAnswerChanged} />
-        <Button text='Add Card' color='cornflowerblue' onPress={this.onSubmit} />
+          onChangeText={this.onAnswerChanged}/>
+        <Button text="Add Card" color="cornflowerblue" onPress={this.onSubmit}/>
       </View>
-    )
+    );
   }
 }
 
-function mapStateToProps (state, { route }) {
-  const { deckId } = route.params
+function mapStateToProps(state, {route}) {
+  const {deckId} = route.params;
 
   return {
     deckId,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(CreateQuestionView)
+export default connect(mapStateToProps)(CreateQuestionView);

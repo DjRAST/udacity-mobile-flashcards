@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import  { connect } from 'react-redux';
+import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { resetLocalNotification } from '../storage/notifications';
 import { CREATE_QUESTION_VIEW_ID } from './CreateQuestion';
@@ -12,42 +12,44 @@ export const DECK_VIEW_ID = 'Deck';
 
 class DeckView extends Component {
   onCreateCard = () => {
-    const { deckId, navigation } = this.props
-    navigation.navigate(CREATE_QUESTION_VIEW_ID, { deckId })
-  }
+    const {deckId, navigation} = this.props;
+    navigation.navigate(CREATE_QUESTION_VIEW_ID, {deckId});
+  };
 
   onStartQuiz = () => {
-    const { deckId, noCards, navigation } = this.props
+    const {deckId, noCards, navigation} = this.props;
     if (noCards > 0) {
-      resetLocalNotification()
-      navigation.navigate(QUIZ_VIEW_ID, { deckId })
+      resetLocalNotification();
+      navigation.navigate(QUIZ_VIEW_ID, {deckId});
     } else {
-      alert('Please add at least one card to start the quiz!')
+      alert('Please add at least one card to start the quiz!');
     }
-  }
+  };
 
-  render () {
-    const { deckId, noCards } = this.props
+  render() {
+    const {deckId, noCards} = this.props;
 
     return (
       <View style={ViewStyles.base}>
-        <Text style={ViewStyles.viewHeadline}>{deckId} <MaterialCommunityIcons name='cards-outline' size={32} color='black' /></Text>
+        <Text style={ViewStyles.viewHeadline}>
+          {deckId} <MaterialCommunityIcons name="cards-outline" size={32} color="black"/>
+        </Text>
         <Text style={{marginBottom: 36, fontSize: 18}}>{noCards} Cards</Text>
-        <Button text='Add Card' color='green' onPress={this.onCreateCard} style={{marginBottom: 24}} />
-        <Button text='Start Quiz' color='coral' onPress={this.onStartQuiz} />
+        <Button text="Add Card" color="green" onPress={this.onCreateCard} style={{marginBottom: 24}}/>
+        <Button text="Start Quiz" color="coral" onPress={this.onStartQuiz}/>
       </View>
-    )
+    );
   }
 }
 
-function mapStateToProps (state, { route }) {
-  const { deckId } = route.params
-  const deck = state[deckId]
+function mapStateToProps(state, {route}) {
+  const {deckId} = route.params;
+  const deck = state[deckId];
 
   return {
     deckId,
     noCards: deck.questions.length,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(DeckView)
+export default connect(mapStateToProps)(DeckView);

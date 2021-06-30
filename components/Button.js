@@ -7,5 +7,5 @@ export default function ({text, color, onPress, style}) {
     <TouchableOpacity style={[ViewStyles.button, {backgroundColor: color}, style]} onPress={onPress}>
       <Text style={ViewStyles.buttonText}>{text}</Text>
     </TouchableOpacity>
-  )
+  );
 }

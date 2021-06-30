@@ -12,11 +12,11 @@ export default function () {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={TabNavigation} options={{ title: 'Mobile Flash Cards' }}/>
-        <Stack.Screen name={DECK_VIEW_ID} component={DeckView} />
-        <Stack.Screen name={CREATE_QUESTION_VIEW_ID} component={CreateQuestionView} options={{ title: 'New Card' }}/>
-        <Stack.Screen name={QUIZ_VIEW_ID} component={QuizView} />
+        <Stack.Screen name="Home" component={TabNavigation} options={{title: 'Mobile Flash Cards'}}/>
+        <Stack.Screen name={DECK_VIEW_ID} component={DeckView}/>
+        <Stack.Screen name={CREATE_QUESTION_VIEW_ID} component={CreateQuestionView} options={{title: 'New Card'}}/>
+        <Stack.Screen name={QUIZ_VIEW_ID} component={QuizView}/>
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }

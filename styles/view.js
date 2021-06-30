@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
 
 export default StyleSheet.create({
   base: {
@@ -29,5 +28,5 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-  }
-})
+  },
+});
